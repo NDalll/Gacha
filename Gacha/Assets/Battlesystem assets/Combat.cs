@@ -30,7 +30,6 @@ public class Combat : MonoBehaviour
 
         if (attackType == 0)
         {
-
             Debug.Log("basic attack clicked");
         }
         else if (attackType == 1)
@@ -48,7 +47,7 @@ public class Combat : MonoBehaviour
             currentCharacter.attack(targetid, attackType);
             activeCharacter =+ 1;
         }
-        else
+        if (activeCharacter > playerCharacterList.Count - 1)
         {
             EnemyAttack();
         }

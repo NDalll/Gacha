@@ -33,6 +33,10 @@ public class Enemy : MonoBehaviour
                 Combat.targetChosen = true;
                 target = true;
             }
+        } 
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

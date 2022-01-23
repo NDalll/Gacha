@@ -8,7 +8,7 @@ public class AttackButtons : MonoBehaviour
     public bool isAbility;
     public bool isBasicAttack;
     private Combat combat;
-    public int attackType;
+    private int attackType;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +29,11 @@ public class AttackButtons : MonoBehaviour
         {
             attackType = 0;
         }
+    }
+
+    void Update()
+    {
+        //Change icon for attack based on character
     }
 
     public void buttonPressed()
