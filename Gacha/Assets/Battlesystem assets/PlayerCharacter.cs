@@ -16,16 +16,21 @@ public class PlayerCharacter : MonoBehaviour
     public bool abilityAOE;
     public bool ultimateAOE;
     public bool isActive;
-
+    public float healthbarSize;
+    public GameObject healthbar;
     public GameObject marker;
     private Combat combat;
     private Enemy targetEnemy;
+    private float startingHealth;
+    private Vector3 localScale;
 
     // Start is called before the first frame update
     void Start()
     {
         combat = GameObject.FindGameObjectWithTag("Combat").GetComponent<Combat>();
         combat.playerCharacterList.Add(this.gameObject);
+        startingHealth = health;
+        localScale = healthbar.transform.localScale;
     }
     void Update()
     {
@@ -36,6 +41,13 @@ public class PlayerCharacter : MonoBehaviour
         else
         {
             marker.SetActive(false);
+        }
+        localScale.x = health / startingHealth * healthbarSize;
+        healthbar.transform.localScale = localScale;
+        if (health < 0)
+        {
+           gameObject.SetActive(false);
+           damage = 0;
         }
     }
     public void Attack(int attackType, int target)
