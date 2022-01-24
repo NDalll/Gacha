@@ -6,13 +6,18 @@ public class PlayerCharacter : MonoBehaviour
 {
     public float damage;
     public float health;
+    public float level;
+    public float levelHpMultipler;
+    public float levelDamageMultipler;
     public float basicAttackMultiplier;
     public float abilityMultiplier;
     public float ultimateMultiplier;
     public bool basicAttackAOE;
     public bool abilityAOE;
     public bool ultimateAOE;
+    public bool isActive;
 
+    public GameObject marker;
     private Combat combat;
     private Enemy targetEnemy;
 
@@ -21,30 +26,32 @@ public class PlayerCharacter : MonoBehaviour
     {
         combat = GameObject.FindGameObjectWithTag("Combat").GetComponent<Combat>();
         combat.playerCharacterList.Add(this.gameObject);
-    } 
-    public void attack(int attackType, int target)
+    }
+    void Update()
     {
+        if (isActive == true)
+        {
+            marker.SetActive(true);
+        }
+        else
+        {
+            marker.SetActive(false);
+        }
+    }
+    public void Attack(int attackType, int target)
+    {
+        targetEnemy = combat.enemyList[target].GetComponent<Enemy>();
         if (attackType == 0)
         {
-            targetEnemy = combat.enemyList[target].GetComponent<Enemy>();
-            targetEnemy.health =- damage * basicAttackMultiplier;
-            //run character attack
-
+            targetEnemy.health -= damage * basicAttackMultiplier;
         }
         else if (attackType == 1)
         {
-            targetEnemy = combat.enemyList[target].GetComponent<Enemy>();
-            targetEnemy.health = -damage * abilityMultiplier;
-            //run character attack
-
+            targetEnemy.health -= damage * abilityMultiplier;
         }
         else if (attackType == 2)
         {
-            //run character attack
-            targetEnemy = combat.enemyList[target].GetComponent<Enemy>();
-            targetEnemy.health = -damage * ultimateMultiplier;
+            targetEnemy.health -= damage * ultimateMultiplier;
         }
     }
-
-
 }

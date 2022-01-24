@@ -22,22 +22,18 @@ public class Enemy : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Combat.targetChosen == true && target == false)
+            if (combat.targetChosen == true && target == false)
             {
-                Combat.targetChosen = false;
+                combat.targetChosen = false;
                 Invoke("Delay", 0.01f);
                 target = true;
             }
             else
             {
-                Combat.targetChosen = true;
+                combat.targetChosen = true;
                 target = true;
             }
         } 
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     // Update is called once per frame
@@ -51,15 +47,21 @@ public class Enemy : MonoBehaviour
         {
             marker.SetActive(false);
         }
-        if (Combat.targetChosen == false)
+        if (combat.targetChosen == false)
         {
             target = false;
+        }
+
+        if (health <= 0)
+        {
+            target = false;
+            gameObject.SetActive(false);
         }
     }
 
     void Delay()
     {
-        Combat.targetChosen = true;
+        combat.targetChosen = true;
         target = true;
     }
 }
