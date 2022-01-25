@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
             target = false;
             gameObject.SetActive(false);
             damage = 0;
+            
         }
     }
     public void Attack()
