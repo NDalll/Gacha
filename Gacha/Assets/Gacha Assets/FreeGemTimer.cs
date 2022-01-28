@@ -6,7 +6,7 @@ using System; //vigtig da scriptet skal tilgå computerens lokale tid
 
 public class FreeGemTimer : MonoBehaviour
 {
-    public int freeGems; //spillerens freeGems
+    public static int freeGems = 2900; //spillerens freeGems
     public float ResetTime; //hvor lang tid der går inden spilleren for flere gems
     public static float timeValue = 0; //hvor lang tid der er gået
     public float timeSinceLastPlay; //en float brugt til beregningen af hvor lang tid siden spilleren sidst spillede spillet
@@ -28,13 +28,13 @@ public class FreeGemTimer : MonoBehaviour
                 TimeSpan timespan = dateNow - dateQuit; //finder hvor meget tid der er gået imellem nu og sidste gang brugeren spillede
                 timeSinceLastPlay = Convert.ToSingle(timespan.TotalSeconds); //converetere det til sekunder og en float
             }
-            freeGems = PlayerPrefs.GetInt("freeGems"); //bruger unity's indbyggede database til at finde brugerens energi da de sidst loggede af
+            //freeGems = PlayerPrefs.GetInt("freeGems"); //bruger unity's indbyggede database til at finde brugerens energi da de sidst loggede af
             timeValue = PlayerPrefs.GetFloat("timeValue"); //bruger unity's indbyggede database til at finde hvad timeren var på da de sidst loggede af
             timeValue -= timeSinceLastPlay; //trækker tiden siden brugeren sidst spillede fra hvad timeren er på 
         }
         else //hvis brugeren ikke har spillet spillet før sættes energien og timeren til deres default værdier
         {
-            timeValue = ResetTime;
+            timeValue = ResetTime; 
         }
         //freeGems = 0; //til at resette timeren til testing
     }
@@ -48,7 +48,7 @@ public class FreeGemTimer : MonoBehaviour
 
     void Update()
     {
-        if (freeGems < 1500) //hvis spilleren har mindre energi end maxet
+        if (freeGems < 3000) //hvis spilleren har mindre energi end maxet
         {
             if (timeValue > 0) //hvis timeValue er større end 0 vil timeren tæller ned
             {

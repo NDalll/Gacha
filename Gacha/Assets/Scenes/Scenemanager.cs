@@ -17,4 +17,21 @@ public class Scenemanager : MonoBehaviour
     {
         SceneManager.LoadScene("Combat");
     }
+    public void ToGachaScene()
+    {
+        SceneManager.LoadScene("Gacha");
+    }
+    public void ToRollingScene()
+    {
+        if (FreeGemTimer.freeGems >= 900)
+        {
+            FreeGemTimer.freeGems = FreeGemTimer.freeGems - 900;
+            PlayerPrefs.SetInt("freeGems", FreeGemTimer.freeGems);
+            SceneManager.LoadScene("Rolling");
+        }
+    }
+    public void ToMainScene()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }

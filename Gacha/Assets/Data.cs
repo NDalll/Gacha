@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class Data : MonoBehaviour
 {
-    public static List<GameObject> combatCharacterData;
-    public static List<GameObject> collectionCharacterData;
-    public static List<GameObject> gachaCharacterData;
+    public GameObject[] combatCharacters;
+    public GameObject[] collectionCharacters;
+    public GameObject[] gachaCharacters;
+    public GameObject[] gachaRareCharacters;
+    public static GameObject[] combatCharacterData;
+    public static GameObject[] collectionCharacterData;
+    public static GameObject[] gachaCharacterData;
+    public static GameObject[] gachaRareCharacterData;
+
+
+    void Start()
+    {
+       // combatCharacterData = combatCharacters;
+        collectionCharacterData = collectionCharacters;
+        gachaCharacterData = gachaCharacters;
+        gachaRareCharacterData = gachaRareCharacters;
+    }
 }
